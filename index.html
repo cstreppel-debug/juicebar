@@ -80,9 +80,10 @@
 
   /* Navbar scrolled state */
   .nav-scrolled {
-    background: rgba(245, 220, 124, 0.95) !important;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 18px -10px rgba(58,90,28,0.25);
+    background: rgba(249, 232, 158, 0.72) !important;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 4px 18px -10px rgba(58,90,28,0.2);
   }
   /* Logo sizing — bigger than before */
   .nav-logo { height: 80px; }
@@ -122,7 +123,7 @@
     align-items: center;
     justify-content: center;
     padding-top: 140px;
-    opacity: 0.18;
+    opacity: 0.09;
     pointer-events: none;
     overflow: hidden;
   }
@@ -131,8 +132,11 @@
     width: min(460px, 90vw);
     max-width: 460px;
     height: auto;
-    filter: drop-shadow(0 8px 18px rgba(58, 90, 28, 0.55))
-            drop-shadow(0 2px 4px rgba(58, 90, 28, 0.4));
+    filter:
+      brightness(0) saturate(100%)
+      invert(40%) sepia(15%) saturate(450%) hue-rotate(50deg)
+      brightness(95%) contrast(85%)
+      drop-shadow(0 6px 14px rgba(58, 90, 28, 0.25));
   }
 
   /* Buttons */
@@ -427,9 +431,9 @@
 <div id="util-strip" class="hidden md:block fixed top-0 inset-x-0 z-50 bg-forest-700 text-cream-100 text-[12px] transition-all">
   <div class="max-w-7xl mx-auto px-5 md:px-8 h-9 flex items-center justify-between gap-6">
     <div class="flex items-center gap-5">
-      <span class="inline-flex items-center gap-1.5">
-        <span class="w-1.5 h-1.5 rounded-full bg-[#9bd06a] animate-pulse"></span>
-        <span><b>Nu open</b> · sluit om 17:00</span>
+      <span class="inline-flex items-center gap-1.5" data-shop-status data-format="strip">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#9bd06a] animate-pulse" data-status-dot></span>
+        <span data-status-text><b>Nu open</b> · sluit om 17:00</span>
       </span>
       <span class="hidden lg:inline-flex items-center gap-1.5 opacity-90">
         <svg class="w-3.5 h-3.5"><use href="#i-pin"/></svg>
@@ -507,6 +511,38 @@
 
 <!-- ============ HERO ============ -->
 <section id="home" class="hero-bg relative pt-32 pb-16 md:pt-44 md:pb-24 overflow-hidden">
+  <!-- Palm frond shadow top-right -->
+  <svg class="absolute pointer-events-none select-none -top-10 -right-16 md:-top-16 md:-right-20 w-[360px] md:w-[560px] lg:w-[640px] h-auto text-forest-900" viewBox="0 0 600 600" fill="currentColor" style="opacity: 0.12; transform: rotate(8deg);" aria-hidden="true">
+    <g>
+      <!-- main stem -->
+      <path d="M 90 30 Q 280 180 480 470 Q 482 478 478 482 Q 472 484 466 478 Q 270 200 84 38 Q 80 32 84 28 Q 88 26 90 30 Z"/>
+      <!-- leaflets, paired along stem -->
+      <!-- pair 1 (top, smallest) -->
+      <path d="M 110 40 Q 80 10 30 22 Q 70 28 105 60 Z"/>
+      <path d="M 110 40 Q 150 -10 200 -8 Q 145 18 120 58 Z"/>
+      <!-- pair 2 -->
+      <path d="M 140 75 Q 80 50 20 75 Q 95 78 140 95 Z"/>
+      <path d="M 140 75 Q 200 30 270 30 Q 200 65 158 95 Z"/>
+      <!-- pair 3 -->
+      <path d="M 180 120 Q 90 105 18 140 Q 110 130 175 145 Z"/>
+      <path d="M 180 120 Q 270 70 360 70 Q 260 110 200 145 Z"/>
+      <!-- pair 4 -->
+      <path d="M 230 175 Q 110 175 25 220 Q 130 195 225 200 Z"/>
+      <path d="M 230 175 Q 340 130 440 130 Q 330 165 256 205 Z"/>
+      <!-- pair 5 -->
+      <path d="M 285 235 Q 140 250 30 305 Q 160 265 282 260 Z"/>
+      <path d="M 285 235 Q 400 200 510 205 Q 395 235 320 270 Z"/>
+      <!-- pair 6 -->
+      <path d="M 345 305 Q 180 335 40 400 Q 195 345 350 330 Z"/>
+      <path d="M 345 305 Q 470 285 580 295 Q 465 315 390 348 Z"/>
+      <!-- pair 7 -->
+      <path d="M 405 380 Q 230 425 60 500 Q 240 425 420 410 Z"/>
+      <path d="M 405 380 Q 525 375 620 395 Q 525 395 450 430 Z"/>
+      <!-- pair 8 (bottom, biggest) -->
+      <path d="M 460 460 Q 285 515 110 600 Q 290 515 475 488 Z"/>
+      <path d="M 460 460 Q 565 470 600 500 Q 555 485 495 510 Z"/>
+    </g>
+  </svg>
   <div class="max-w-7xl mx-auto px-5 md:px-8 grid lg:grid-cols-2 gap-10 items-center relative">
     <div class="fade-up">
       <h1 class="display text-forest-700 leading-[0.95]">
@@ -761,7 +797,7 @@
             <a href="https://www.instagram.com/thejuicebar.vlissingen/" target="_blank" rel="noopener" class="shrink-0">
               <span class="block w-11 h-11 rounded-full p-[2px]" style="background: conic-gradient(from 210deg, #f5dc7c, #e9cf78, #b9962f, #4a6a26, #f5dc7c);">
                 <span class="flex items-center justify-center w-full h-full rounded-full bg-cream-100 overflow-hidden">
-                  <img src="assets/logo.webp" alt="" class="w-8 h-8" />
+                  <img src="assets/logo.webp" alt="" class="w-8 h-8" style="filter: brightness(0) saturate(100%) invert(15%) sepia(40%) saturate(900%) hue-rotate(55deg) brightness(80%) contrast(110%);" />
                 </span>
               </span>
             </a>
@@ -841,9 +877,9 @@
         <div class="relative h-56 md:h-64 overflow-hidden shrink-0">
           <img src="assets/juicebar-storefront.webp" alt="The Juice Bar Vlissingen — winkelpui met gele en blauwe kolommen" class="w-full h-full object-cover" />
           <div class="absolute inset-0 bg-gradient-to-t from-forest-900/55 via-forest-900/10 to-transparent"></div>
-          <span class="absolute top-4 right-4 inline-flex items-center gap-1.5 bg-cream-100 text-forest-700 text-xs font-bold px-3 py-1.5 rounded-full shadow whitespace-nowrap">
-            <span class="w-2 h-2 rounded-full bg-[#4a9a3a] animate-pulse"></span>
-            Nu open
+          <span class="absolute top-4 right-4 inline-flex items-center gap-1.5 bg-cream-100 text-forest-700 text-xs font-bold px-3 py-1.5 rounded-full shadow whitespace-nowrap" data-shop-status data-format="pill">
+            <span class="w-2 h-2 rounded-full bg-[#4a9a3a] animate-pulse" data-status-dot></span>
+            <span data-status-text>Nu open</span>
           </span>
           <div class="absolute bottom-4 left-5 right-5">
             <p class="display text-cream-100 text-2xl leading-none drop-shadow">The Juice Bar</p>
@@ -969,19 +1005,19 @@
         <!-- Floating pin card (top-left) -->
         <div class="absolute top-5 left-5 bg-cream-100/95 backdrop-blur rounded-xl shadow-lg p-4 max-w-[280px] border border-forest-700/10 z-10">
           <div class="flex items-center gap-3">
-            <img src="assets/logo.webp" alt="" class="w-10 h-10 shrink-0" />
+            <img src="assets/logo.webp" alt="" class="w-10 h-10 shrink-0" style="filter: brightness(0) saturate(100%) invert(15%) sepia(40%) saturate(900%) hue-rotate(55deg) brightness(80%) contrast(110%);" />
             <div class="min-w-0">
               <p class="display text-forest-700 text-lg leading-tight">The Juice Bar</p>
               <p class="text-forest-700/70 text-xs">Walstraat 189, Vlissingen</p>
             </div>
           </div>
-          <div class="mt-3 flex items-center gap-2 text-xs text-forest-700/80 flex-wrap">
+          <div class="mt-3 flex items-center gap-2 text-xs text-forest-700/80 flex-wrap" data-shop-status data-format="map">
             <span class="inline-flex items-center gap-1.5">
-              <span class="w-1.5 h-1.5 rounded-full bg-[#4a9a3a]"></span>
-              Geopend
+              <span class="w-1.5 h-1.5 rounded-full bg-[#4a9a3a]" data-status-dot></span>
+              <span data-status-label>Geopend</span>
             </span>
             <span class="opacity-40">•</span>
-            <span>Sluit om 17:00</span>
+            <span data-status-text>Sluit om 17:00</span>
           </div>
           <a href="https://www.google.com/maps/dir/?api=1&destination=Walstraat+189,+Vlissingen" target="_blank" rel="noopener" class="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-forest-700 hover:underline whitespace-nowrap">
             Open in Google Maps
@@ -1109,6 +1145,86 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
   }, { threshold: 0.15 });
   document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+  // Live shop status — reflects current time vs opening hours
+  // Hours: Ma–Vr 08:00–17:00, Za 09:00–17:00, Zo gesloten
+  const HOURS = [
+    null,                 // 0 = Zondag (gesloten)
+    { open: 8,  close: 17 }, // 1 = Maandag
+    { open: 8,  close: 17 }, // 2
+    { open: 8,  close: 17 }, // 3
+    { open: 8,  close: 17 }, // 4
+    { open: 8,  close: 17 }, // 5 = Vrijdag
+    { open: 9,  close: 17 }, // 6 = Zaterdag
+  ];
+  const DAY_NAMES = ['zo', 'ma', 'di', 'wo', 'do', 'vr', 'za'];
+
+  function fmtTime(h) {
+    return String(h).padStart(2, '0') + ':00';
+  }
+
+  function getShopStatus(now = new Date()) {
+    const day = now.getDay();
+    const hour = now.getHours() + now.getMinutes() / 60;
+    const today = HOURS[day];
+
+    if (today && hour >= today.open && hour < today.close) {
+      return { open: true, closeAt: today.close };
+    }
+    // closed — find next opening (may be later today, e.g. 03:00 → today 08:00)
+    for (let i = 0; i <= 7; i++) {
+      const nextDay = (day + i) % 7;
+      const sched = HOURS[nextDay];
+      if (!sched) continue;
+      // i === 0 only counts if we haven't passed today's opening yet
+      if (i === 0 && hour >= sched.open) continue;
+      let label;
+      if (i === 0)      label = 'vandaag';
+      else if (i === 1) label = 'morgen';
+      else              label = DAY_NAMES[nextDay];
+      return { open: false, nextDayLabel: label, openAt: sched.open };
+    }
+    return { open: false };
+  }
+
+  function applyShopStatus() {
+    const s = getShopStatus();
+    document.querySelectorAll('[data-shop-status]').forEach(el => {
+      const fmt = el.getAttribute('data-format');
+      const dot = el.querySelector('[data-status-dot]');
+      const text = el.querySelector('[data-status-text]');
+      const label = el.querySelector('[data-status-label]');
+
+      if (s.open) {
+        if (dot) {
+          dot.style.background = '#4a9a3a';
+          dot.classList.add('animate-pulse');
+        }
+        if (label) label.textContent = 'Geopend';
+        if (text) {
+          if (fmt === 'strip')      text.innerHTML = '<b>Nu open</b> · sluit om ' + fmtTime(s.closeAt);
+          else if (fmt === 'pill')  text.textContent = 'Nu open';
+          else                       text.textContent = 'Sluit om ' + fmtTime(s.closeAt);
+        }
+      } else {
+        if (dot) {
+          dot.style.background = '#c44a3a';
+          dot.classList.remove('animate-pulse');
+        }
+        if (label) label.textContent = 'Gesloten';
+        if (text) {
+          const opensAt = s.openAt != null ? fmtTime(s.openAt) : '';
+          const dayLabel = s.nextDayLabel || '';
+          if (fmt === 'strip')      text.innerHTML = '<b>Nu gesloten</b> · opent ' + dayLabel + ' ' + opensAt;
+          else if (fmt === 'pill')  text.textContent = 'Nu gesloten';
+          else                       text.textContent = 'Opent ' + dayLabel + ' ' + opensAt;
+        }
+      }
+    });
+  }
+  applyShopStatus();
+  // Re-check every minute so the badge stays accurate on long-open tabs
+  setInterval(applyShopStatus, 60 * 1000);
 </script>
 
 </body>
