@@ -1,0 +1,1115 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Juice Bar Vlissingen — Verse sappen, smoothies & bites</title>
+<meta name="description" content="The Juice Bar Vlissingen — gezonde, verse en natuurlijke sappen, smoothies en bites in hartje Vlissingen." />
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Caveat+Brush&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          cream: {
+            50:  '#fbf3d8',
+            100: '#f9ecc4',
+            200: '#f5e6b0',
+            300: '#f0dc94',
+            400: '#e9cf78',
+          },
+          forest: {
+            500: '#4a6a26',
+            600: '#3f5c1f',
+            700: '#3a5a1c',
+            800: '#2f4817',
+            900: '#23360f',
+          },
+          olive:  '#7a8c3f',
+          gold:   '#b9962f',
+        },
+        fontFamily: {
+          display: ['"Amatic SC"', 'system-ui', 'sans-serif'],
+          script:  ['"Caveat Brush"', 'cursive'],
+          sans:    ['Quicksand', 'system-ui', 'sans-serif'],
+        },
+        boxShadow: {
+          soft: '0 10px 30px -12px rgba(58, 90, 28, 0.25)',
+        },
+      },
+    },
+  };
+</script>
+<style>
+  html { scroll-behavior: smooth; overflow-x: hidden; }
+  body { font-family: 'Quicksand', system-ui, sans-serif; color: #3a5a1c; background: #f5e6b0; font-weight: 500; overflow-x: hidden; }
+  .display {
+    font-family: 'Amatic SC', system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+  .script {
+    font-family: 'Caveat Brush', cursive;
+    font-weight: 400;
+  }
+
+  /* Hero background gradient — matches the photo's warm yellow, with faded storefront photo */
+  .hero-bg {
+    background-image:
+      linear-gradient(180deg, rgba(245,220,124,0.86) 0%, rgba(245,220,124,0.82) 60%, rgba(245,220,124,0.92) 100%),
+      url('assets/juicebar-storefront.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #f5dc7c;
+  }
+
+  /* Palm shadow in top right of hero */
+  .palm-shadow {
+    position: absolute;
+    top: -20px;
+    right: -40px;
+    width: 380px;
+    height: 380px;
+    opacity: 0.16;
+    pointer-events: none;
+  }
+
+  /* Navbar scrolled state */
+  .nav-scrolled {
+    background: rgba(245, 220, 124, 0.95) !important;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 18px -10px rgba(58,90,28,0.25);
+  }
+  /* Logo sizing — bigger than before */
+  .nav-logo { height: 80px; }
+  @media (min-width: 768px) { .nav-logo { height: 96px; } }
+  .nav-link {
+    position: relative;
+    padding: 6px 2px;
+    font-weight: 500;
+    color: #3a5a1c;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: -2px;
+    height: 1.5px;
+    background: #3a5a1c;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .25s ease;
+  }
+  .nav-link:hover::after,
+  .nav-link.active::after { transform: scaleX(1); }
+
+  /* Underline used under section title decorations */
+  .underline-script {
+    text-decoration: underline;
+    text-decoration-color: #b9962f;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 6px;
+  }
+
+  /* Menu watermark logo */
+  .menu-watermark {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 140px;
+    opacity: 0.18;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .menu-watermark svg,
+  .menu-watermark img {
+    width: min(460px, 90vw);
+    max-width: 460px;
+    height: auto;
+    filter: drop-shadow(0 8px 18px rgba(58, 90, 28, 0.55))
+            drop-shadow(0 2px 4px rgba(58, 90, 28, 0.4));
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 26px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 15px;
+    transition: transform .15s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+  }
+  .btn-primary { background: #3a5a1c; color: #f5e6b0; }
+  .btn-primary:hover { background: #2f4817; transform: translateY(-1px); box-shadow: 0 10px 24px -10px rgba(58,90,28,.5); }
+  .btn-outline { background: transparent; color: #3a5a1c; border: 1.5px solid #3a5a1c; }
+  .btn-outline:hover { background: #3a5a1c; color: #f5e6b0; }
+  .btn-ghost { background: #fbf3d8; color: #3a5a1c; border: 1px solid rgba(58,90,28,0.18); }
+  .btn-ghost:hover { background: #f0dc94; }
+
+  /* Menu items */
+  .menu-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    align-items: baseline;
+    padding: 8px 0;
+    font-size: 15px;
+    color: #3a5a1c;
+  }
+  .menu-row .dots {
+    border-bottom: 1px dotted rgba(58,90,28,0.25);
+    height: 1px;
+  }
+
+  /* Smoothie cup placeholder visuals */
+  .cup-row {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 6px;
+  }
+  .cup {
+    position: relative;
+    width: 150px;
+    height: 220px;
+    border-radius: 12px 12px 18px 18px;
+    overflow: hidden;
+    filter: drop-shadow(0 18px 22px rgba(58,90,28,0.18));
+  }
+  .cup::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0) 30%);
+    pointer-events: none;
+  }
+  .cup::after {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    bottom: 8px;
+    width: 14px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.55), rgba(255,255,255,0));
+    filter: blur(2px);
+  }
+  .cup-yellow { background: linear-gradient(180deg, #f5c43a 0%, #e8a517 70%, #c98a0e 100%); height: 210px; }
+  .cup-green  { background: linear-gradient(180deg, #8fb14b 0%, #5d8a2a 70%, #3f6a18 100%); height: 240px; }
+  .cup-red    { background: linear-gradient(180deg, #b4243a 0%, #87122b 65%, #5f0a1d 100%); height: 220px; }
+
+  .straw {
+    position: absolute;
+    top: -36px;
+    width: 8px;
+    height: 60px;
+    background: #f3e0b0;
+    border-radius: 4px;
+    transform: rotate(6deg);
+    box-shadow: inset -2px 0 0 rgba(0,0,0,0.08);
+  }
+  .dome {
+    position: absolute;
+    top: -28px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 130px;
+    height: 60px;
+    border-radius: 50% 50% 8px 8px / 80% 80% 8px 8px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.25));
+    border: 1px solid rgba(255,255,255,0.65);
+    backdrop-filter: blur(2px);
+  }
+  .pineapple-leaves {
+    position: absolute;
+    top: -78px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 110px;
+    height: 100px;
+  }
+  .cup-label {
+    position: absolute;
+    left: 50%;
+    top: 55%;
+    transform: translate(-50%, -50%);
+    width: 78px;
+    height: 78px;
+    border-radius: 999px;
+    background: #fbf3d8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 0 0 1.5px #3a5a1c, 0 4px 10px rgba(0,0,0,0.12);
+  }
+  .cup-label svg { width: 56px; height: 56px; }
+
+  /* CTA section */
+  .cta-green {
+    position: relative;
+    background:
+      linear-gradient(95deg, #2f4817 0%, #3a5a1c 55%, rgba(58,90,28,0.85) 100%);
+    overflow: hidden;
+  }
+  .cta-green::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 10% 90%, rgba(255,255,255,0.05), transparent 40%),
+      radial-gradient(circle at 90% 10%, rgba(255,255,255,0.05), transparent 40%);
+    pointer-events: none;
+  }
+  /* stamp circle */
+  .stamp {
+    width: 150px; height: 150px;
+    border-radius: 999px;
+    border: 1.5px solid #3a5a1c;
+    color: #3a5a1c;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    background: transparent;
+  }
+  .stamp::before, .stamp::after {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    border-radius: 999px;
+    border: 1px solid rgba(58,90,28,0.4);
+  }
+  .stamp::after { inset: 14px; border-style: dashed; }
+
+  /* Storefront placeholder */
+  .storefront {
+    position: relative;
+    overflow: hidden;
+    border-top-left-radius: 999px;
+    border-top-right-radius: 999px;
+    background: linear-gradient(180deg, #d8c894 0%, #b9a166 100%);
+  }
+
+  /* Responsive helpers */
+  @media (max-width: 1023px) {
+    .nav-center { display: none; }
+  }
+
+  /* Mobile menu */
+  #mobileMenu { transition: max-height .3s ease, opacity .25s ease; max-height: 0; opacity: 0; overflow: hidden; }
+  #mobileMenu.open { max-height: 480px; opacity: 1; }
+
+  /* Subtle entrance */
+  .fade-up { opacity: 0; transform: translateY(14px); transition: opacity .7s ease, transform .7s ease; }
+  .fade-up.in { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body class="bg-cream-200">
+
+<!-- ============ SHARED ASSETS ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- Tree-in-circle logo mark -->
+    <symbol id="logo-mark" viewBox="0 0 120 120">
+      <circle cx="60" cy="60" r="56" fill="none" stroke="currentColor" stroke-width="2"/>
+      <circle cx="60" cy="60" r="50" fill="none" stroke="currentColor" stroke-width="1"/>
+      <!-- The Juice Bar curved text top -->
+      <path id="logo-arc-top" d="M 18 60 A 42 42 0 0 1 102 60" fill="none"/>
+      <text font-family="'Caveat Brush', cursive" font-size="15" fill="currentColor" letter-spacing="0.5">
+        <textPath href="#logo-arc-top" startOffset="50%" text-anchor="middle">The Juice Bar</textPath>
+      </text>
+      <!-- Middelburg curved bottom -->
+      <path id="logo-arc-bot" d="M 22 70 A 38 38 0 0 0 98 70" fill="none"/>
+      <text font-family="'Caveat Brush', cursive" font-size="11" fill="currentColor" letter-spacing="1">
+        <textPath href="#logo-arc-bot" startOffset="50%" text-anchor="middle">Middelburg</textPath>
+      </text>
+      <!-- Tree -->
+      <g transform="translate(60 70)">
+        <!-- trunk -->
+        <rect x="-2" y="0" width="4" height="14" fill="currentColor"/>
+        <!-- canopy: cluster of circles -->
+        <circle cx="-10" cy="-4" r="9" fill="currentColor"/>
+        <circle cx="9" cy="-4" r="9" fill="currentColor"/>
+        <circle cx="0" cy="-14" r="11" fill="currentColor"/>
+        <circle cx="-12" cy="-12" r="6" fill="currentColor"/>
+        <circle cx="12" cy="-12" r="6" fill="currentColor"/>
+        <!-- dots/fruit -->
+        <circle cx="-6" cy="-10" r="1.4" fill="#f5e6b0"/>
+        <circle cx="6" cy="-8" r="1.4" fill="#f5e6b0"/>
+        <circle cx="0" cy="-16" r="1.4" fill="#f5e6b0"/>
+      </g>
+      <!-- ground line dashes -->
+      <line x1="36" y1="88" x2="84" y2="88" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 3"/>
+    </symbol>
+
+    <!-- Icons -->
+    <symbol id="i-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 4c0 8-4 14-12 14a8 8 0 0 1 0-16c4 0 6 1 12 2z"/>
+      <path d="M4 20c4-4 9-7 14-8"/>
+    </symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M13 2 L4 14 h7 l-1 8 L20 10 h-7 z"/>
+    </symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/>
+    </symbol>
+    <symbol id="i-cup" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 7h12l-1 13a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L6 7z"/>
+      <path d="M8 7c0-2 1.5-4 4-4s4 2 4 4"/>
+      <path d="M12 3v4"/>
+    </symbol>
+    <symbol id="i-apple" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 7c-2-3-6-2-7 1-1 4 1 11 5 13 1 .4 2 .4 2 0 0 .4 1 .4 2 0 4-2 6-9 5-13-1-3-5-4-7-1z"/>
+      <path d="M12 7c.5-2 1.6-3 3-3"/>
+    </symbol>
+    <symbol id="i-blender" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M7 3h10l-1 9H8L7 3z"/>
+      <path d="M8 12h8l-1 7a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2l-1-7z"/>
+      <path d="M10 7h4"/>
+    </symbol>
+    <symbol id="i-bowl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 11h18a9 9 0 0 1-18 0z"/>
+      <path d="M8 8c0-2 4-2 4 0M14 6c0-2 3-1 3 1"/>
+    </symbol>
+    <symbol id="i-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 4h2l2.5 12h11l2-9H6"/>
+      <circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/>
+    </symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 22s7-7.5 7-13a7 7 0 0 0-14 0c0 5.5 7 13 7 13z"/>
+      <circle cx="12" cy="9" r="2.5"/>
+    </symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M12 7v5l3 2"/>
+    </symbol>
+    <symbol id="i-ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="3" width="18" height="18" rx="5"/>
+      <circle cx="12" cy="12" r="4"/>
+      <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+    </symbol>
+    <symbol id="i-fb" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M13 22v-8h3l.5-4H13V7.5c0-1.1.3-2 2-2H17V2.2C16.6 2.1 15.4 2 14 2c-3 0-5 1.8-5 5.1V10H6v4h3v8h4z"/>
+    </symbol>
+    <symbol id="i-tt" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M14 3v10.2a3.3 3.3 0 1 1-3.3-3.3v3a.3.3 0 0 0 .3.3h.5a.3.3 0 0 0 0-.6.3.3 0 0 1 0-.4c1.7 0 3 1.3 3 3a3 3 0 1 1-6 0V7a4 4 0 0 0 4 4v-3a7 7 0 0 1-2-.4A7 7 0 0 1 11 3h3z"/>
+    </symbol>
+    <symbol id="i-palm" viewBox="0 0 200 200" fill="currentColor">
+      <g>
+        <path d="M100 110 Q 80 60 30 40 Q 70 50 100 80 Q 130 50 170 40 Q 120 60 100 80 Z"/>
+        <path d="M100 110 Q 60 100 20 130 Q 70 110 100 110 Q 130 110 180 130 Q 140 100 100 110 Z"/>
+        <path d="M100 105 Q 105 140 130 180 Q 105 145 100 105 Z"/>
+      </g>
+    </symbol>
+
+    <!-- Pineapple leaves -->
+    <symbol id="pineapple-leaves" viewBox="0 0 100 100">
+      <g fill="#5d8a2a" stroke="#3f6a18" stroke-width="1.2" stroke-linejoin="round">
+        <path d="M50 95 L40 60 L30 80 L25 55 L50 95"/>
+        <path d="M50 95 L60 60 L70 80 L75 55 L50 95"/>
+        <path d="M50 95 L45 30 L35 50 L50 95"/>
+        <path d="M50 95 L55 30 L65 50 L50 95"/>
+        <path d="M50 95 L50 15 L42 35 L50 95"/>
+        <path d="M50 95 L50 15 L58 35 L50 95"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ============ NAVBAR ============ -->
+<!-- ============ UTILITY STRIP + NAVBAR ============ -->
+<div id="util-strip" class="hidden md:block fixed top-0 inset-x-0 z-50 bg-forest-700 text-cream-100 text-[12px] transition-all">
+  <div class="max-w-7xl mx-auto px-5 md:px-8 h-9 flex items-center justify-between gap-6">
+    <div class="flex items-center gap-5">
+      <span class="inline-flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#9bd06a] animate-pulse"></span>
+        <span><b>Nu open</b> · sluit om 17:00</span>
+      </span>
+      <span class="hidden lg:inline-flex items-center gap-1.5 opacity-90">
+        <svg class="w-3.5 h-3.5"><use href="#i-pin"/></svg>
+        Walstraat 189, Vlissingen
+      </span>
+    </div>
+    <div class="flex items-center gap-5">
+      <a href="tel:+31618520519" class="inline-flex items-center gap-1.5 hover:underline">
+        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        06 18520519
+      </a>
+      <a href="mailto:info@juice-bar.nl" class="hidden lg:inline-flex items-center gap-1.5 opacity-90 hover:underline">
+        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        info@juice-bar.nl
+      </a>
+      <a href="https://www.instagram.com/thejuicebar.vlissingen/" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 hover:underline">
+        <svg class="w-3.5 h-3.5"><use href="#i-ig"/></svg>
+        @thejuicebar.vlissingen
+      </a>
+    </div>
+  </div>
+</div>
+
+<header id="nav" class="fixed inset-x-0 z-40 transition-all md:top-9 top-0" style="background: transparent;">
+  <div class="max-w-7xl mx-auto px-5 md:px-8 flex items-start justify-between h-24 md:h-28 pt-3 md:pt-4">
+    <a href="#home" class="flex items-center gap-3 text-forest-700 shrink-0">
+      <img src="assets/logo.webp" alt="The Juice Bar Vlissingen" class="h-16 md:h-20 w-auto" style="filter: brightness(0) saturate(100%) invert(15%) sepia(40%) saturate(900%) hue-rotate(55deg) brightness(80%) contrast(110%) drop-shadow(0 4px 10px rgba(35,54,15,0.35)) drop-shadow(0 1px 2px rgba(35,54,15,0.3));" />
+    </a>
+
+    <nav class="nav-center hidden lg:flex items-center gap-10 text-[15px] mt-4">
+      <a href="#home"    class="nav-link active">Home</a>
+      <a href="#menu"    class="nav-link">Menu</a>
+      <a href="#detox"   class="nav-link">Detox</a>
+      <a href="#over"    class="nav-link">Over ons</a>
+      <a href="#locatie" class="nav-link">Locatie</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+
+    <div class="flex items-center gap-3 mt-3 md:mt-4">
+      <a href="#order" class="btn btn-outline hidden sm:inline-flex">
+        <svg class="w-4 h-4"><use href="#i-cart"/></svg>
+        Order Now
+      </a>
+      <button id="menuBtn" class="lg:hidden p-2 text-forest-700" aria-label="Menu">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile nav -->
+  <div id="mobileMenu" class="lg:hidden bg-cream-200/95 backdrop-blur border-t border-forest-700/10">
+    <div class="px-6 py-4 flex flex-col gap-3 text-forest-700 font-medium">
+      <a href="#home" class="py-2">Home</a>
+      <a href="#menu" class="py-2">Menu</a>
+      <a href="#detox" class="py-2">Detox</a>
+      <a href="#over" class="py-2">Over ons</a>
+      <a href="#locatie" class="py-2">Locatie</a>
+      <a href="#contact" class="py-2">Contact</a>
+      <div class="pt-3 mt-2 border-t border-forest-700/10 flex flex-col gap-2 text-sm">
+        <a href="tel:+31618520519" class="inline-flex items-center gap-2 hover:underline">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          06 18520519
+        </a>
+        <a href="https://www.instagram.com/thejuicebar.vlissingen/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 hover:underline">
+          <svg class="w-4 h-4"><use href="#i-ig"/></svg>
+          @thejuicebar.vlissingen
+        </a>
+      </div>
+      <a href="#order" class="btn btn-primary mt-3 self-start">
+        <svg class="w-4 h-4"><use href="#i-cart"/></svg> Order Now
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="home" class="hero-bg relative pt-32 pb-16 md:pt-44 md:pb-24 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-5 md:px-8 grid lg:grid-cols-2 gap-10 items-center relative">
+    <div class="fade-up">
+      <h1 class="display text-forest-700 leading-[0.95]">
+        <span class="block text-[56px] sm:text-[72px] md:text-[96px] lg:text-[120px]">THE JUICE BAR</span>
+        <span class="block text-[32px] sm:text-[40px] md:text-[52px] lg:text-[64px] mt-1 pl-1">Vlissingen</span>
+      </h1>
+      <p class="mt-6 md:mt-8 text-forest-700/85 text-base md:text-lg leading-relaxed max-w-md">
+        Gezonde, verse en natuurlijke sappen,<br/>
+        smoothies en bites.<br/>
+        Boost your day the natural way!
+      </p>
+      <div class="mt-9 flex flex-wrap gap-4">
+        <a href="#menu" class="btn btn-primary">
+          <svg class="w-4 h-4"><use href="#i-cup"/></svg>
+          Bekijk Menu
+        </a>
+        <a href="#locatie" class="btn btn-outline">
+          <svg class="w-4 h-4"><use href="#i-pin"/></svg>
+          Onze Locatie
+        </a>
+      </div>
+    </div>
+
+    <!-- Smoothie hero photo — transparent PNG, oversized + shifted left -->
+    <div class="relative fade-up lg:-mr-24">
+      <img
+        src="assets/smoothies-hero.png"
+        alt="Drie verse smoothies — mango, groene smoothie met ananas, en bessen — met gember, citroen, spinazie, amandelen en fruit"
+        class="block select-none w-full h-auto lg:w-[140%] lg:max-w-none lg:-translate-x-[25%] drop-shadow-[0_28px_34px_rgba(58,90,28,0.20)]"
+        draggable="false"
+      />
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURES STRIP ============ -->
+<section class="bg-cream-50 border-y border-forest-700/10">
+  <div class="max-w-7xl mx-auto px-5 md:px-8 py-12 md:py-14 grid grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-6 text-center">
+    <div class="flex flex-col items-center gap-3 text-forest-700">
+      <svg class="w-9 h-9"><use href="#i-leaf"/></svg>
+      <p class="display tracking-wider text-[20px]">NATUURLIJK</p>
+      <p class="text-sm leading-snug max-w-[180px] opacity-80">100% natuurlijke ingrediënten</p>
+    </div>
+    <div class="flex flex-col items-center gap-3 text-forest-700">
+      <svg class="w-9 h-9"><use href="#i-bolt"/></svg>
+      <p class="display tracking-wider text-[20px]">BOOST YOUR DAY</p>
+      <p class="text-sm leading-snug max-w-[180px] opacity-80">Geef je lichaam een natuurlijke boost</p>
+    </div>
+    <div class="flex flex-col items-center gap-3 text-forest-700">
+      <svg class="w-9 h-9"><use href="#i-heart"/></svg>
+      <p class="display tracking-wider text-[20px]">GEZOND &amp; VERS</p>
+      <p class="text-sm leading-snug max-w-[180px] opacity-80">Vers geperst, boordevol vitaminen</p>
+    </div>
+    <div class="flex flex-col items-center gap-3 text-forest-700">
+      <svg class="w-9 h-9"><use href="#i-cup"/></svg>
+      <p class="display tracking-wider text-[20px]">MET LIEFDE GEMAAKT</p>
+      <p class="text-sm leading-snug max-w-[180px] opacity-80">Dagelijks vers bereid met passie</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MENU ============ -->
+<section id="menu" class="bg-cream-100 relative py-20 md:py-24">
+  <div class="menu-watermark"><img src="assets/logo.webp" alt="" /></div>
+
+  <div class="max-w-7xl mx-auto px-5 md:px-8 relative">
+    <div class="text-center mb-12">
+      <div class="flex items-center justify-center gap-5 text-forest-700">
+        <span class="h-px w-14 bg-forest-700/40"></span>
+        <h2 class="display text-[40px] sm:text-[56px] md:text-[72px] tracking-wider">ONS MENU</h2>
+        <span class="h-px w-14 bg-forest-700/40"></span>
+      </div>
+      <p class="mt-3 text-forest-700/80 italic">Vers. Natuurlijk. Heerlijk.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-12">
+      <!-- Coldpressed -->
+      <div class="flex flex-col">
+        <div class="flex items-center gap-3 mb-5 text-forest-700">
+          <svg class="w-7 h-7"><use href="#i-apple"/></svg>
+          <h3 class="display text-3xl italic underline-script">Coldpressed Juices</h3>
+        </div>
+        <div class="flex-1 space-y-1">
+          <div class="menu-row"><span>Green Juice</span><span>€ 6,00</span></div>
+          <div class="menu-row"><span>Beet Boost</span><span>€ 6,00</span></div>
+          <div class="menu-row"><span>Carrot Juice</span><span>€ 6,00</span></div>
+          <div class="menu-row"><span>Celery Juice</span><span class="italic opacity-60">Coming soon!</span></div>
+        </div>
+      </div>
+
+      <!-- Blended -->
+      <div class="flex flex-col">
+        <div class="flex items-center gap-3 mb-5 text-forest-700">
+          <svg class="w-7 h-7"><use href="#i-blender"/></svg>
+          <h3 class="display text-3xl italic underline-script">Blended Juices</h3>
+        </div>
+        <div class="flex-1 space-y-1">
+          <div class="menu-row"><span>Watermelon Mix <span class="opacity-60">(in season)</span></span><span>€ 7,00</span></div>
+          <div class="menu-row"><span>Blue Berry Split <span class="opacity-60">(in season)</span></span><span>€ 7,00</span></div>
+          <div class="menu-row"><span>Tropicana</span><span>€ 7,00</span></div>
+          <div class="menu-row"><span>Green Smoothie</span><span>€ 7,00</span></div>
+        </div>
+      </div>
+
+      <!-- Super -->
+      <div class="flex flex-col">
+        <div class="flex items-center gap-3 mb-5 text-forest-700">
+          <svg class="w-7 h-7"><use href="#i-bolt"/></svg>
+          <h3 class="display text-3xl italic underline-script">Super Juices</h3>
+        </div>
+        <div class="flex-1 space-y-1">
+          <div class="menu-row"><span>Booster</span><span>€ 8,00</span></div>
+          <div class="menu-row"><span>Baobab Boost</span><span>€ 6,00</span></div>
+          <div class="menu-row"><span>Moringa Blend</span><span>€ 6,00</span></div>
+          <div class="menu-row"><span>Baobab Juice</span><span>€ 6,00</span></div>
+        </div>
+      </div>
+
+      <!-- Bits & Bites -->
+      <div class="flex flex-col">
+        <div class="flex items-center gap-3 mb-5 text-forest-700">
+          <svg class="w-7 h-7"><use href="#i-bowl"/></svg>
+          <h3 class="display text-3xl italic underline-script">Bits &amp; Bites</h3>
+        </div>
+        <div class="flex-1 space-y-1">
+          <div class="menu-row"><span>Ginger Shot</span><span>€ 3,00</span></div>
+          <div class="menu-row"><span>Ginger lemonade</span><span>€ 4,50</span></div>
+          <div class="menu-row"><span>Apple spritzer</span><span>€ 4,50</span></div>
+          <div class="menu-row"><span>Banana bread</span><span>€ 3,00</span></div>
+          <div class="menu-row"><span>Energy ball</span><span>€ 1,50</span></div>
+          <div class="menu-row"><span>Chia Parfait</span><span>€ 8,00</span></div>
+          <div class="menu-row"><span>Smoothie bowl</span><span>€ 9,50</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DETOX ============ -->
+<section id="detox" class="relative overflow-hidden" style="background: linear-gradient(180deg, #f5dc7c 0%, #efd56e 100%);">
+  <!-- decorative leaf top-left -->
+  <svg class="absolute -top-6 -left-10 w-48 h-48 text-forest-700/15 -rotate-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+    <use href="#i-leaf"/>
+  </svg>
+  <!-- decorative leaf bottom-right -->
+  <svg class="absolute -bottom-10 -right-10 w-56 h-56 text-forest-700/10 rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+    <use href="#i-leaf"/>
+  </svg>
+
+  <div class="max-w-7xl mx-auto px-5 md:px-8 py-20 md:py-28 relative">
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+      <!-- Left: text -->
+      <div class="lg:col-span-7">
+        <p class="display text-forest-700/80 text-2xl tracking-[0.25em]">DETOX</p>
+        <h2 class="display text-forest-700 text-[44px] sm:text-[56px] md:text-[80px] leading-[0.95] mt-2">
+          Reset your<br/>body &amp; mind
+        </h2>
+        <p class="script text-forest-700 text-2xl sm:text-3xl md:text-4xl mt-3 italic">Join us now!</p>
+
+        <p class="mt-7 text-forest-700/90 text-[17px] leading-relaxed max-w-xl">
+          Wist je dat je lichaam voor een korte periode kan overschakelen op
+          vloeibaar voedsel? Je geeft je spijsverteringsstelsel even rust en de
+          kans om zich te reinigen en te herstellen — met allerlei gezondheidsvoordelen.
+        </p>
+        <p class="mt-4 text-forest-700/90 text-[17px] leading-relaxed max-w-xl">
+          Wil je dit (nog eens) ervaren? Kom langs in The Juice Bar — we vertellen
+          je graag meer en spreken samen af waar en wanneer je je sapjes op kan halen.
+        </p>
+
+        <div class="mt-9 flex flex-wrap gap-4 items-center">
+          <a href="#contact" class="btn btn-primary">
+            <svg class="w-4 h-4"><use href="#i-leaf"/></svg>
+            Neem contact op
+          </a>
+          <a href="#menu" class="btn btn-outline">Bekijk ons menu</a>
+        </div>
+      </div>
+
+      <!-- Right: price card -->
+      <div class="lg:col-span-5">
+        <div class="relative rounded-2xl bg-forest-700 text-cream-100 p-8 md:p-10 shadow-soft">
+          <div class="absolute -top-3 left-8 bg-cream-100 text-forest-700 display text-sm tracking-widest px-3 py-1 rounded-full whitespace-nowrap">
+            PRIJSOVERZICHT
+          </div>
+          <h3 class="display text-3xl md:text-4xl tracking-wide mt-2">Kies jouw kuur</h3>
+          <p class="text-cream-100/80 mt-2 text-sm">Vers geperste sappen, klaar om op te halen.</p>
+
+          <ul class="mt-7 divide-y divide-cream-100/15">
+            <li class="flex items-center justify-between gap-4 py-4">
+              <div class="min-w-0">
+                <p class="display text-2xl tracking-wide whitespace-nowrap">3 dagen</p>
+                <p class="text-cream-100/70 text-xs">Een korte reset</p>
+              </div>
+              <p class="display text-3xl tracking-wide whitespace-nowrap shrink-0">€ 70</p>
+            </li>
+            <li class="flex items-center justify-between gap-4 py-4 relative">
+              <div class="min-w-0">
+                <p class="display text-2xl tracking-wide whitespace-nowrap flex items-center gap-2">
+                  5 dagen
+                  <span class="bg-gold text-forest-900 text-[10px] font-bold tracking-widest px-2 py-0.5 rounded-full uppercase">Favoriet</span>
+                </p>
+                <p class="text-cream-100/70 text-xs">Onze populairste keuze</p>
+              </div>
+              <p class="display text-3xl tracking-wide whitespace-nowrap shrink-0">€ 115</p>
+            </li>
+            <li class="flex items-center justify-between gap-4 py-4">
+              <div class="min-w-0">
+                <p class="display text-2xl tracking-wide whitespace-nowrap">7 dagen</p>
+                <p class="text-cream-100/70 text-xs">Voor de doorzetter</p>
+              </div>
+              <p class="display text-3xl tracking-wide whitespace-nowrap shrink-0">€ 160</p>
+            </li>
+          </ul>
+
+          <p class="text-cream-100/60 text-xs mt-6 leading-relaxed">
+            * Meedoen met ons detox-programma is op eigen risico. Heb je een
+            medische aandoening? Raadpleeg dan eerst je arts.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOCATIE ============ -->
+<section id="locatie" class="bg-cream-100 relative overflow-hidden">
+  <!-- Green CTA banner -->
+  <div id="order" class="cta-green text-cream-100 relative">
+    <div class="max-w-7xl mx-auto px-5 md:px-8 py-14 md:py-20 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center relative z-10">
+      <div class="flex flex-col gap-4">
+        <h2 class="display text-[28px] sm:text-[32px] md:text-[40px] lg:text-[44px] leading-[1.1] tracking-wide" style="max-width: 18ch;">
+          Jouw gezonde moment begint hier
+        </h2>
+        <p class="text-cream-100/85 leading-relaxed max-w-md">
+          Of je nu langskomt voor een juice, een smoothie of een bite — wij maken het vers voor jou.
+        </p>
+        <div class="mt-2 flex flex-wrap gap-3">
+          <a href="tel:+31618520519" class="btn btn-ghost" style="background:#fbf3d8;">
+            <svg class="w-4 h-4"><use href="#i-cart"/></svg> Order Now
+          </a>
+          <a href="https://www.instagram.com/thejuicebar.vlissingen/" target="_blank" rel="noopener" class="btn btn-outline border-cream-100 text-cream-100 hover:bg-cream-100 hover:text-forest-700">
+            <svg class="w-4 h-4"><use href="#i-ig"/></svg> Volg ons
+          </a>
+        </div>
+      </div>
+
+      <!-- Instagram feed card -->
+      <div class="relative">
+        <div class="rounded-2xl bg-cream-100 text-forest-700 overflow-hidden shadow-soft">
+          <!-- Header -->
+          <div class="flex items-center gap-3 p-4 border-b border-forest-700/10">
+            <a href="https://www.instagram.com/thejuicebar.vlissingen/" target="_blank" rel="noopener" class="shrink-0">
+              <span class="block w-11 h-11 rounded-full p-[2px]" style="background: conic-gradient(from 210deg, #f5dc7c, #e9cf78, #b9962f, #4a6a26, #f5dc7c);">
+                <span class="flex items-center justify-center w-full h-full rounded-full bg-cream-100 overflow-hidden">
+                  <img src="assets/logo.webp" alt="" class="w-8 h-8" />
+                </span>
+              </span>
+            </a>
+            <div class="min-w-0 flex-1">
+              <a href="https://www.instagram.com/thejuicebar.vlissingen/" target="_blank" rel="noopener" class="font-bold text-[15px] leading-tight hover:underline truncate block">thejuicebar.vlissingen</a>
+              <p class="text-xs text-forest-700/60">The Juice Bar · Vlissingen</p>
+            </div>
+            <a href="https://www.instagram.com/thejuicebar.vlissingen/" target="_blank" rel="noopener" class="shrink-0 inline-flex items-center gap-1.5 bg-forest-700 text-cream-100 text-xs font-bold px-3 py-1.5 rounded-full hover:bg-forest-800">
+              <svg class="w-3.5 h-3.5"><use href="#i-ig"/></svg>
+              Volgen
+            </a>
+          </div>
+
+          <!-- Tile grid -->
+          <div class="grid grid-cols-3 gap-[3px] bg-forest-700/10 p-[3px]">
+            <!-- 1: green smoothie -->
+            <a href="https://www.instagram.com/thejuicebar.vlissingen/" target="_blank" rel="noopener" aria-label="Open Instagram" class="relative aspect-square overflow-hidden group" style="background: linear-gradient(135deg, #8fb14b 0%, #5d8a2a 60%, #3f6a18 100%);">
+              <svg class="absolute inset-0 m-auto w-12 h-12 text-cream-100/85" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l-1 13a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L6 7z"/><path d="M8 7c0-2 1.5-4 4-4s4 2 4 4"/><path d="M12 3v4"/></svg>
+              <span class="absolute bottom-1.5 left-2 text-cream-100/95 text-[10px] font-bold tracking-wider uppercase drop-shadow">Green Juice</span>
+            </a>
+            <!-- 2: mango -->
+            <a href="https://www.instagram.com/thejuicebar.vlissingen/" target="_blank" rel="noopener" aria-label="Open Instagram" class="relative aspect-square overflow-hidden" style="background: linear-gradient(135deg, #f5c43a 0%, #e8a517 60%, #c98a0e 100%);">
+              <svg class="absolute inset-0 m-auto w-12 h-12 text-cream-100/85" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c-4 0-7-3-7-7 0-4 3-7 7-7s7 3 7 7c0 4-3 7-7 7z"/><path d="M12 7c.5-2 2-3 4-3"/></svg>
+              <span class="absolute bottom-1.5 left-2 text-cream-100/95 text-[10px] font-bold tracking-wider uppercase drop-shadow">Tropicana</span>
+            </a>
+            <!-- 3: berry -->
+            <a href="https://www.instagram.com/thejuicebar.vlissingen/" target="_blank" rel="noopener" aria-label="Open Instagram" class="relative aspect-square overflow-hidden" style="background: linear-gradient(135deg, #b4243a 0%, #87122b 60%, #5f0a1d 100%);">
+              <svg class="absolute inset-0 m-auto w-12 h-12 text-cream-100/85" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="13" r="3"/><circle cx="15" cy="13" r="3"/><circle cx="12" cy="9" r="3"/></svg>
+              <span class="absolute bottom-1.5 left-2 text-cream-100/95 text-[10px] font-bold tracking-wider uppercase drop-shadow">Blueberry</span>
+            </a>
+            <!-- 4: bowl -->
+            <a href="https://www.instagram.com/thejuicebar.vlissingen/" target="_blank" rel="noopener" aria-label="Open Instagram" class="relative aspect-square overflow-hidden" style="background: linear-gradient(135deg, #f5dc7c 0%, #e8a517 100%);">
+              <svg class="absolute inset-0 m-auto w-12 h-12 text-forest-700/85" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18a9 9 0 0 1-18 0z"/><path d="M8 8c0-2 4-2 4 0M14 6c0-2 3-1 3 1"/></svg>
+              <span class="absolute bottom-1.5 left-2 text-forest-700 text-[10px] font-bold tracking-wider uppercase drop-shadow">Smoothie Bowl</span>
+            </a>
+            <!-- 5: ginger shot -->
+            <a href="https://www.instagram.com/thejuicebar.vlissingen/" target="_blank" rel="noopener" aria-label="Open Instagram" class="relative aspect-square overflow-hidden" style="background: linear-gradient(135deg, #e89a2a 0%, #b96a18 60%, #7a4810 100%);">
+              <svg class="absolute inset-0 m-auto w-12 h-12 text-cream-100/85" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 L4 14 h7 l-1 8 L20 10 h-7 z"/></svg>
+              <span class="absolute bottom-1.5 left-2 text-cream-100/95 text-[10px] font-bold tracking-wider uppercase drop-shadow">Ginger Shot</span>
+            </a>
+            <!-- 6: leaf/detox -->
+            <a href="https://www.instagram.com/thejuicebar.vlissingen/" target="_blank" rel="noopener" aria-label="Open Instagram" class="relative aspect-square overflow-hidden" style="background: linear-gradient(135deg, #4a6a26 0%, #2f4817 100%);">
+              <svg class="absolute inset-0 m-auto w-12 h-12 text-cream-100/85" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4c0 8-4 14-12 14a8 8 0 0 1 0-16c4 0 6 1 12 2z"/><path d="M4 20c4-4 9-7 14-8"/></svg>
+              <span class="absolute bottom-1.5 left-2 text-cream-100/95 text-[10px] font-bold tracking-wider uppercase drop-shadow">Detox</span>
+            </a>
+          </div>
+
+          <!-- Footer -->
+          <a href="https://www.instagram.com/thejuicebar.vlissingen/" target="_blank" rel="noopener" class="flex items-center justify-between p-4 hover:bg-cream-50 transition-colors">
+            <span class="text-sm font-bold text-forest-700">Bekijk meer op Instagram</span>
+            <svg class="w-4 h-4 text-forest-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- decorative leaf -->
+    <svg class="absolute -bottom-12 -right-10 w-64 h-64 text-cream-100/10 rotate-[-15deg]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+      <use href="#i-leaf"/>
+    </svg>
+  </div>
+
+  <!-- Bezoek ons -->
+  <div class="max-w-7xl mx-auto px-5 md:px-8 py-20 md:py-28">
+    <div class="text-center">
+      <div class="flex items-center justify-center gap-3 sm:gap-5 text-forest-700">
+        <span class="h-px w-8 sm:w-10 md:w-14 bg-forest-700/40"></span>
+        <h2 class="display text-[30px] sm:text-[36px] md:text-[48px] tracking-wider whitespace-nowrap">BEZOEK ONS</h2>
+        <span class="h-px w-8 sm:w-10 md:w-14 bg-forest-700/40"></span>
+      </div>
+      <p class="text-forest-700/80 italic mt-4">In het hart van Vlissingen.</p>
+    </div>
+
+    <div class="mt-12 grid lg:grid-cols-5 gap-6 lg:gap-8 items-stretch">
+      <!-- Info card -->
+      <div class="lg:col-span-2 flex flex-col rounded-2xl overflow-hidden bg-cream-50 border border-forest-700/10 shadow-soft">
+        <!-- Storefront photo -->
+        <div class="relative h-56 md:h-64 overflow-hidden shrink-0">
+          <img src="assets/juicebar-storefront.webp" alt="The Juice Bar Vlissingen — winkelpui met gele en blauwe kolommen" class="w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-forest-900/55 via-forest-900/10 to-transparent"></div>
+          <span class="absolute top-4 right-4 inline-flex items-center gap-1.5 bg-cream-100 text-forest-700 text-xs font-bold px-3 py-1.5 rounded-full shadow whitespace-nowrap">
+            <span class="w-2 h-2 rounded-full bg-[#4a9a3a] animate-pulse"></span>
+            Nu open
+          </span>
+          <div class="absolute bottom-4 left-5 right-5">
+            <p class="display text-cream-100 text-2xl leading-none drop-shadow">The Juice Bar</p>
+            <p class="text-cream-100/90 text-sm drop-shadow">Vlissingen</p>
+          </div>
+        </div>
+
+        <!-- Info rows -->
+        <div class="p-7 md:p-8 text-forest-700 flex-1 flex flex-col gap-6">
+          <div class="flex gap-4">
+            <div class="w-10 h-10 rounded-full bg-cream-200 flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5"><use href="#i-pin"/></svg>
+            </div>
+            <div class="min-w-0">
+              <p class="text-[11px] uppercase tracking-widest text-forest-700/60">Adres</p>
+              <p class="font-bold mt-0.5">Walstraat 189</p>
+              <p class="text-sm text-forest-700/80">4381 GR Vlissingen</p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="w-10 h-10 rounded-full bg-cream-200 flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5"><use href="#i-clock"/></svg>
+            </div>
+            <div class="min-w-0 flex-1">
+              <p class="text-[11px] uppercase tracking-widest text-forest-700/60">Openingstijden</p>
+              <div class="mt-1.5 text-sm flex flex-col gap-1">
+                <div class="flex justify-between gap-3">
+                  <span>Maandag – Vrijdag</span>
+                  <span class="font-medium whitespace-nowrap">08:00 – 17:00</span>
+                </div>
+                <div class="flex justify-between gap-3">
+                  <span>Zaterdag</span>
+                  <span class="font-medium whitespace-nowrap">09:00 – 17:00</span>
+                </div>
+                <div class="flex justify-between gap-3 text-forest-700/60">
+                  <span>Zondag</span>
+                  <span class="whitespace-nowrap">Gesloten</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="w-10 h-10 rounded-full bg-cream-200 flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div class="min-w-0 flex-1 flex flex-col gap-1.5">
+              <p class="text-[11px] uppercase tracking-widest text-forest-700/60">Contact</p>
+              <a href="mailto:info@juice-bar.nl" class="font-bold hover:underline whitespace-nowrap">info@juice-bar.nl</a>
+              <a href="tel:+31618520519" class="text-sm text-forest-700/80 hover:underline whitespace-nowrap">06 18520519</a>
+            </div>
+          </div>
+
+          <div class="mt-auto flex flex-wrap gap-3 pt-2">
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Walstraat+189,+Vlissingen" target="_blank" rel="noopener" class="btn btn-primary">
+              <svg class="w-4 h-4"><use href="#i-pin"/></svg>
+              Plan je route
+            </a>
+            <a href="https://www.instagram.com/thejuicebar.vlissingen" target="_blank" rel="noopener" class="btn btn-outline">
+              <svg class="w-4 h-4"><use href="#i-ig"/></svg>
+              Volg ons
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Map -->
+      <div class="lg:col-span-3 relative rounded-2xl overflow-hidden border border-forest-700/10 shadow-soft min-h-[460px]">
+        <!-- CSS map fallback (renders behind iframe) -->
+        <div class="absolute inset-0" aria-hidden="true" style="
+          background:
+            radial-gradient(circle at 50% 50%, rgba(74,154,58,0.10) 0%, transparent 60%),
+            linear-gradient(180deg, #e9ddb0 0%, #ddc986 100%);
+        ">
+          <!-- street grid (SVG) -->
+          <svg class="absolute inset-0 w-full h-full" viewBox="0 0 600 480" preserveAspectRatio="xMidYMid slice" fill="none">
+            <!-- water/park blob -->
+            <path d="M -20 380 C 100 360 180 420 320 380 C 460 340 580 400 640 360 L 640 520 L -20 520 Z" fill="#a9c98a" opacity="0.45"/>
+            <!-- streets -->
+            <g stroke="#fbf3d8" stroke-linecap="round">
+              <line x1="-20" y1="160" x2="640" y2="190" stroke-width="22"/>
+              <line x1="-20" y1="300" x2="640" y2="280" stroke-width="18"/>
+              <line x1="120" y1="-20" x2="180" y2="520" stroke-width="18"/>
+              <line x1="380" y1="-20" x2="420" y2="520" stroke-width="22"/>
+              <line x1="-20" y1="80" x2="640" y2="60" stroke-width="10" opacity="0.6"/>
+              <line x1="-20" y1="420" x2="640" y2="440" stroke-width="12" opacity="0.6"/>
+              <line x1="260" y1="-20" x2="280" y2="520" stroke-width="10" opacity="0.5"/>
+              <line x1="520" y1="-20" x2="540" y2="520" stroke-width="10" opacity="0.5"/>
+            </g>
+            <!-- street name labels -->
+            <g font-family="Quicksand, sans-serif" font-size="11" fill="#3a5a1c" opacity="0.55" font-weight="600">
+              <text x="40" y="155" transform="rotate(2.5 40 155)">Stationsstraat</text>
+              <text x="40" y="275" transform="rotate(-2 40 275)">Walstraat</text>
+              <text x="400" y="100" transform="rotate(90 400 100)">Lange Zelke</text>
+              <text x="148" y="100" transform="rotate(90 148 100)">Aagje Dekenstraat</text>
+            </g>
+            <!-- building blocks -->
+            <g fill="#f5dc7c" opacity="0.8">
+              <rect x="40" y="200" width="70" height="60" rx="3"/>
+              <rect x="200" y="200" width="160" height="60" rx="3"/>
+              <rect x="440" y="200" width="80" height="60" rx="3"/>
+              <rect x="40" y="320" width="70" height="80" rx="3"/>
+              <rect x="200" y="310" width="160" height="40" rx="3"/>
+              <rect x="440" y="310" width="80" height="40" rx="3"/>
+              <rect x="40" y="90" width="70" height="50" rx="3"/>
+              <rect x="200" y="90" width="160" height="50" rx="3"/>
+              <rect x="440" y="90" width="80" height="50" rx="3"/>
+            </g>
+          </svg>
+          <!-- big pin marker -->
+          <div class="absolute" style="left: 50%; top: 52%; transform: translate(-50%, -100%);">
+            <div class="relative flex flex-col items-center">
+              <div class="w-14 h-14 rounded-full bg-forest-700 text-cream-100 flex items-center justify-center shadow-lg ring-4 ring-cream-100">
+                <svg class="w-7 h-7"><use href="#i-pin"/></svg>
+              </div>
+              <div class="w-3 h-3 bg-forest-700 rotate-45 -mt-1.5 shadow"></div>
+              <div class="w-8 h-2 rounded-full bg-forest-900/20 blur-[2px] mt-1"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating pin card (top-left) -->
+        <div class="absolute top-5 left-5 bg-cream-100/95 backdrop-blur rounded-xl shadow-lg p-4 max-w-[280px] border border-forest-700/10 z-10">
+          <div class="flex items-center gap-3">
+            <img src="assets/logo.webp" alt="" class="w-10 h-10 shrink-0" />
+            <div class="min-w-0">
+              <p class="display text-forest-700 text-lg leading-tight">The Juice Bar</p>
+              <p class="text-forest-700/70 text-xs">Walstraat 189, Vlissingen</p>
+            </div>
+          </div>
+          <div class="mt-3 flex items-center gap-2 text-xs text-forest-700/80 flex-wrap">
+            <span class="inline-flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#4a9a3a]"></span>
+              Geopend
+            </span>
+            <span class="opacity-40">•</span>
+            <span>Sluit om 17:00</span>
+          </div>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=Walstraat+189,+Vlissingen" target="_blank" rel="noopener" class="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-forest-700 hover:underline whitespace-nowrap">
+            Open in Google Maps
+            <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </a>
+        </div>
+
+        <!-- Map zoom controls (decorative) -->
+        <div class="absolute bottom-5 right-5 flex flex-col gap-1 z-10">
+          <button type="button" aria-label="Inzoomen" class="w-9 h-9 rounded-md bg-cream-100 border border-forest-700/15 text-forest-700 text-lg shadow hover:bg-cream-50">+</button>
+          <button type="button" aria-label="Uitzoomen" class="w-9 h-9 rounded-md bg-cream-100 border border-forest-700/15 text-forest-700 text-lg shadow hover:bg-cream-50">–</button>
+        </div>
+
+        <!-- Attribution -->
+        <p class="absolute bottom-2 left-3 text-[10px] text-forest-700/50 z-10">Kaartillustratie · The Juice Bar</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer id="contact" class="bg-cream-200 pt-14 pb-8">
+  <div class="max-w-7xl mx-auto px-5 md:px-8 grid md:grid-cols-5 gap-10">
+    <!-- Logo -->
+    <div>
+      <img src="assets/logo.webp" alt="The Juice Bar Vlissingen" class="w-36 h-auto" style="filter: brightness(0) saturate(100%) invert(15%) sepia(40%) saturate(900%) hue-rotate(55deg) brightness(80%) contrast(110%) drop-shadow(0 4px 10px rgba(35,54,15,0.25));" />
+    </div>
+
+    <!-- Nav -->
+    <div>
+      <p class="display tracking-widest text-forest-700 text-xl mb-3">NAVIGATIE</p>
+      <ul class="space-y-1.5 text-forest-700/90 text-sm">
+        <li><a href="#home" class="hover:underline">Home</a></li>
+        <li><a href="#menu" class="hover:underline">Menu</a></li>
+        <li><a href="#detox" class="hover:underline">Detox</a></li>
+        <li><a href="#over" class="hover:underline">Over ons</a></li>
+        <li><a href="#locatie" class="hover:underline">Locatie</a></li>
+        <li><a href="#contact" class="hover:underline">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Social -->
+    <div>
+      <p class="display tracking-widest text-forest-700 text-xl mb-3">VOLG ONS</p>
+      <div class="flex items-center gap-3 text-forest-700">
+        <a href="#" aria-label="Instagram" class="w-9 h-9 rounded-full bg-cream-50 border border-forest-700/15 flex items-center justify-center hover:bg-cream-100"><svg class="w-4 h-4"><use href="#i-ig"/></svg></a>
+        <a href="#" aria-label="Facebook"  class="w-9 h-9 rounded-full bg-cream-50 border border-forest-700/15 flex items-center justify-center hover:bg-cream-100"><svg class="w-4 h-4"><use href="#i-fb"/></svg></a>
+        <a href="#" aria-label="TikTok"    class="w-9 h-9 rounded-full bg-cream-50 border border-forest-700/15 flex items-center justify-center hover:bg-cream-100"><svg class="w-4 h-4"><use href="#i-tt"/></svg></a>
+      </div>
+      <p class="mt-4 text-forest-700/80 text-sm">@thejuicebarvlissingen</p>
+    </div>
+
+    <!-- Contact -->
+    <div>
+      <p class="display tracking-widest text-forest-700 text-xl mb-3">CONTACT</p>
+      <p class="text-forest-700/90 text-sm font-bold">Walstraat 189</p>
+      <p class="text-forest-700/90 text-sm">4381 GR Vlissingen</p>
+      <p class="text-forest-700/90 text-sm mt-3">info@juice-bar.nl</p>
+      <p class="text-forest-700/90 text-sm mt-1">06 18520519</p>
+    </div>
+
+    <!-- Allergies -->
+    <div>
+      <div class="border border-forest-700/30 rounded-md p-4 text-forest-700/90 text-sm">
+        If you have any allergies, please let us know.
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-5 md:px-8 mt-10 pt-6 border-t border-forest-700/15">
+    <p class="text-center text-forest-700/70 text-sm">
+      Walstraat 189, Vlissingen
+      <span class="mx-3 opacity-50">|</span>
+      info@juice-bar.nl
+      <span class="mx-3 opacity-50">|</span>
+      www.juice-bar.nl
+    </p>
+  </div>
+</footer>
+
+<script>
+  // Sticky navbar scroll effect + utility strip hide
+  const nav = document.getElementById('nav');
+  const utilStrip = document.getElementById('util-strip');
+  const onScroll = () => {
+    const scrolled = window.scrollY > 24;
+    if (scrolled) nav.classList.add('nav-scrolled');
+    else nav.classList.remove('nav-scrolled');
+    // hide utility strip on scroll, navbar slides up to top
+    if (utilStrip) {
+      if (window.scrollY > 8) {
+        utilStrip.style.transform = 'translateY(-100%)';
+        nav.style.top = '0';
+      } else {
+        utilStrip.style.transform = 'translateY(0)';
+        nav.style.top = '';
+      }
+    }
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Mobile menu toggle
+  const mb = document.getElementById('menuBtn');
+  const mm = document.getElementById('mobileMenu');
+  mb.addEventListener('click', () => mm.classList.toggle('open'));
+  mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mm.classList.remove('open')));
+
+  // Active nav link on scroll
+  const sections = ['home','menu','locatie','contact'].map(id => document.getElementById(id)).filter(Boolean);
+  const links = document.querySelectorAll('.nav-link');
+  const setActive = () => {
+    const y = window.scrollY + 120;
+    let current = 'home';
+    sections.forEach(s => { if (s.offsetTop <= y) current = s.id; });
+    links.forEach(l => {
+      const href = l.getAttribute('href').slice(1);
+      l.classList.toggle('active', href === current);
+    });
+  };
+  window.addEventListener('scroll', setActive, { passive: true });
+
+  // Fade-up on intersect
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
