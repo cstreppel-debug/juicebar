@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Juice Bar · iOS App Prototype</title>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<style>
+  html, body { margin: 0; padding: 0; background: #f0eee9; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; }
+  #root { width: 100vw; height: 100vh; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" src="app/ios-frame.jsx"></script>
+<script type="text/babel" src="app/design-canvas.jsx"></script>
+<script type="text/babel" src="app/shared.jsx"></script>
+<script type="text/babel" src="app/screens-customer.jsx"></script>
+<script type="text/babel" src="app/screens-admin.jsx"></script>
+
+<script type="text/babel" data-presets="env,react">
+const PHONE_W = 402;
+const PHONE_H = 874;
+
+function App() {
+  return (
+    <DesignCanvas>
+      <DCPostIt x={40} y={40} color="#f5dc7c">
+        <b>The Juice Bar Vlissingen · iOS app prototype</b><br/>
+        Customer + admin (gated by login) in één app. Stijl op basis van /index.html — Amatic SC + Quicksand, forest green op cream met tropische accenten.<br/><br/>
+        Klik op een telefoon om hem volledig te bekijken. Sleep aan de greep om te herschikken.
+      </DCPostIt>
+
+      <DCSection
+        id="customer"
+        title="Customer · Klant flow"
+        subtitle="Bestellen, ophaaltijd kiezen en live status volgen. Betalen gebeurt aan de bar."
+      >
+        <DCArtboard id="cust-splash" label="01 · Splash + Taalkeuze" width={PHONE_W} height={PHONE_H}><ScreenSplash/></DCArtboard>
+        <DCArtboard id="cust-home" label="02 · Home / Menu" width={PHONE_W} height={PHONE_H}><ScreenHome/></DCArtboard>
+        <DCArtboard id="cust-detail" label="03 · Product detail" width={PHONE_W} height={PHONE_H}><ScreenProductDetail/></DCArtboard>
+        <DCArtboard id="cust-cart" label="04 · Mandje" width={PHONE_W} height={PHONE_H}><ScreenCart/></DCArtboard>
+        <DCArtboard id="cust-pickup" label="05 · Ophaaltijd" width={PHONE_W} height={PHONE_H}><ScreenPickup/></DCArtboard>
+        <DCArtboard id="cust-confirm" label="06 · Bevestiging" width={PHONE_W} height={PHONE_H}><ScreenConfirmation/></DCArtboard>
+        <DCArtboard id="cust-status" label="07 · Live status" width={PHONE_W} height={PHONE_H}><ScreenOrderStatus/></DCArtboard>
+        <DCArtboard id="cust-profile" label="08 · Profiel + Spaarkaart" width={PHONE_W} height={PHONE_H}><ScreenProfile/></DCArtboard>
+      </DCSection>
+
+      <DCSection
+        id="admin"
+        title="Admin · Beheer (achter login)"
+        subtitle="Bestellingen ontvangen met geluid, status updaten, dagomzet zien, producten en openingstijden beheren."
+      >
+        <DCArtboard id="adm-login" label="09 · Admin login" width={PHONE_W} height={PHONE_H}><ScreenAdminLogin/></DCArtboard>
+        <DCArtboard id="adm-dash" label="10 · Dashboard · live bestellingen" width={PHONE_W} height={PHONE_H}><ScreenAdminDashboard/></DCArtboard>
+        <DCArtboard id="adm-alert" label="11 · Nieuwe bestelling alert" width={PHONE_W} height={PHONE_H}><ScreenNewOrderAlert/></DCArtboard>
+        <DCArtboard id="adm-detail" label="12 · Bestelling detail" width={PHONE_W} height={PHONE_H}><ScreenAdminOrderDetail/></DCArtboard>
+        <DCArtboard id="adm-stats" label="13 · Dagomzet + grafieken" width={PHONE_W} height={PHONE_H}><ScreenStats/></DCArtboard>
+        <DCArtboard id="adm-products" label="14 · Productenbeheer" width={PHONE_W} height={PHONE_H}><ScreenProducts/></DCArtboard>
+        <DCArtboard id="adm-settings" label="15 · Openingstijden + drukte" width={PHONE_W} height={PHONE_H}><ScreenSettings/></DCArtboard>
+      </DCSection>
+    </DesignCanvas>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>
